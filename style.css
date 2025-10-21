@@ -19,7 +19,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(15, 23, 42, 0.9);
+    background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
     z-index: 1000;
@@ -27,7 +27,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(15, 23, 42, 0.98);
     box-shadow: 0 4px 20px rgba(6, 182, 212, 0.1);
 }
 
@@ -88,6 +88,8 @@ body {
     align-items: center;
     padding: 8rem 2rem 4rem;
     background: radial-gradient(circle at 30% 20%, rgba(6, 182, 212, 0.1), transparent 50%);
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -97,6 +99,8 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-text h1 {
@@ -152,6 +156,8 @@ body {
     display: flex;
     justify-content: center;
     animation: fadeInRight 0.8s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .profile-card {
@@ -163,6 +169,8 @@ body {
     backdrop-filter: blur(10px);
     transition: all 0.4s ease;
     max-width: 350px;
+    position: relative;
+    z-index: 3;
 }
 
 .profile-card:hover {
@@ -190,6 +198,8 @@ body {
 /* Sections */
 .section {
     padding: 6rem 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -214,7 +224,7 @@ body {
     border-radius: 2px;
 }
 
-/* Timeline */
+/* Timeline - FIXED VERSION */
 .timeline {
     max-width: 900px;
     margin: 0 auto;
@@ -230,11 +240,13 @@ body {
     width: 2px;
     background: linear-gradient(to bottom, #06b6d4, transparent);
     transform: translateX(-50%);
+    z-index: -1; /* Fix: garis di belakang card */
 }
 
 .timeline-item {
     margin-bottom: 3rem;
     position: relative;
+    z-index: 2; /* Fix: pastiin item di atas garis */
 }
 
 .timeline-item::before {
@@ -248,7 +260,7 @@ body {
     border: 4px solid #0f172a;
     border-radius: 50%;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 3; /* Fix: titik di atas semua */
 }
 
 /* Cards */
@@ -260,6 +272,7 @@ body {
     backdrop-filter: blur(10px);
     transition: all 0.4s ease;
     position: relative;
+    z-index: 2; /* Fix: card di atas background */
 }
 
 .card:hover {
@@ -304,6 +317,8 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 /* Skills Grid */
@@ -313,6 +328,8 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 .skill-card {
@@ -324,6 +341,8 @@ body {
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
 
 .skill-card:hover {
@@ -353,6 +372,8 @@ body {
     border: 1px solid rgba(148, 163, 184, 0.1);
     border-radius: 24px;
     backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
 }
 
 .cta-section h2 {
@@ -382,6 +403,8 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+    position: relative;
+    z-index: 2;
 }
 
 .btn:hover {
@@ -396,6 +419,8 @@ footer {
     background: rgba(15, 23, 42, 0.8);
     border-top: 1px solid rgba(148, 163, 184, 0.1);
     color: #94a3b8;
+    position: relative;
+    z-index: 1;
 }
 
 /* Animations */
@@ -439,6 +464,7 @@ footer {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
     
     .hero-text h1 {
@@ -458,12 +484,20 @@ footer {
         justify-content: center;
     }
     
+    /* Fix Timeline Mobile */
     .timeline::before {
         left: 20px;
+        z-index: -1;
     }
     
     .timeline-item::before {
         left: 20px;
+        z-index: 3;
+    }
+    
+    .timeline .card {
+        margin-left: 3rem;
+        z-index: 2;
     }
     
     .section-title {
@@ -490,5 +524,13 @@ footer {
     
     .profile-img {
         font-size: 5rem;
+    }
+    
+    .profile-card {
+        padding: 2rem;
+    }
+    
+    .section {
+        padding: 4rem 1rem;
     }
 }
